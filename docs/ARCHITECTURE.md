@@ -10,7 +10,17 @@
 
 ---
 
+> **다이어그램 렌더링**: GitHub Markdown은 PlantUML을 기본 지원하지 않으므로
+> 아래 그림은 [plantuml.com 서버](https://plantuml.com/server)로 렌더링한 SVG 이미지다.
+> 원본 소스는 각 그림 아래 `PlantUML 소스` 토글에 있으며, 수정 시
+> [PlantUML Web Server](https://www.plantuml.com/plantuml/uml/)에서 새 URL을 생성해 교체한다.
+
 ## 1. 전체 구성
+
+![전체 구성도](https://www.plantuml.com/plantuml/svg/RLEzJWCn3DxlAQnEC20as1WGrrOg25L2_H43OWWvSusQ9b4k811YPUCHU0GM9jw9FWIsSrUAr24v-_FVPyTtrYGLqyFA5itIkA2YMe7sg-0TkZHDpnOXeaxArHOBY_S9aeTewaM2oh35U5SKIYSVeVVpzhx--Ew1Qc28whw3rr-V7NoEAXfN5qLGUgbgXDx06ge4UzTuTrY6iD-3bmBWXbHDL0Ogf8U8jnmxK2ksZ8t-1vFEy0oV4iml169vVi7eyH3AHqKjmWHTXH6ZE6IiUDtYSMK2MkCGIZY1gQaT79nAefRG62kZs0dElJLDCbeoTGgxN4KCqMji6Z6HMZ8ioIQeVUqCZml6laARkRCaJYFhcuPBNlg8oebrT3JRJR7F50EYNd14RgQbcSEXd4voezF95ahEKYSFwMWaVNdXD4A7KUsYrsUlpH3fhZ69jLEO8pyt751-VYGw8czcqmc2obZu4gsTGFu8mbtJ4RbzoFp9ERi5QeMSX6gCs_JSCPqSJYtI-IlKpuNwWcpuTqAEpwlHDio8hF8PhG_z9Ry)
+
+<details>
+<summary>PlantUML 소스</summary>
 
 ```plantuml
 @startuml
@@ -59,6 +69,8 @@ Avatar --> Deaf
 @enduml
 ```
 
+</details>
+
 ---
 
 ## 2. 파이프라인 A — 수어 영상 → 한국어 텍스트
@@ -75,6 +87,11 @@ Avatar --> Deaf
 | 6 | **Output** | 텍스트 스트림 (부분 결과 + 확정 결과) | 자막 형태로 표시 |
 
 ### 2.2 전처리 파이프라인
+
+![전처리 파이프라인](https://www.plantuml.com/plantuml/svg/LP9TQzfW5CVlyoaEx4QPexkG8dRToZPsFTWkToCriZ1h9Ca6lHbQdqdm1IFLBjqIYKLMEtBXL9n2zeLoplCTTf8EsjtaoSCvl___l3n7fbKoh8ydLSNyeDNg9QDq0gLZI_kaMQVFTQEi6Y_qgcx0WqAXeAIvIX4d7fvxU6tBPWXo932mQIA0R9UwmO5IZ9SBsaxtA6Zm7QyMy1z0InT_XEzg6HA1TCU0gtMy4F0GE4wTMPhoIw1miYn5Lpqvz822SVpRavUZ1FlkKE0SqiMGBjRnRWuq6r8tp07353N8Zmx_1L3Ok1E936viEHRqRGHo49A_bPqjq6PCxHuBLah7AkJt2_3eAP0tYrT_u7F-CNiav5rxN3IrN3dguNMJgNZHm5K3Nhr-at3nAk0QarjQTIT4Fo9_ZQCRbhHnmDuyXgMG_IXfmRMBi9-72azRpO5f6LfPXGAZMWKozu2pDL3RWNZPe8rtRzHFWB_nIj3EVPO5wxrQWyofQcOLW2A6QnnSqcH8NeHJfdeETkSvA1jw_O0JJ4klAshLL25JqrE2sdqstEEERlyOwL7BPx-8byNk2pc-WNHVBJ-RQ1GpRtFmCWloYqF2ktMPoxDT6iEVS-mdyntXD03PTEYhmniKs0tl_6jbhQ8SyS5Fxoy)
+
+<details>
+<summary>PlantUML 소스</summary>
 
 ```plantuml
 @startuml
@@ -97,6 +114,8 @@ else (no)
 endif
 @enduml
 ```
+
+</details>
 
 - **정규화**: 카메라 거리·위치 불변성 확보. translation·scale 제거, 필요 시 회전 보정.
 - **결측 처리**: 손이 프레임 밖/가려짐 → 이전 값 보간 후 별도 mask 채널로 결측 표시.
@@ -129,6 +148,11 @@ endif
 
 ### 3.2 흐름
 
+![음성 -> 아바타 흐름](https://www.plantuml.com/plantuml/svg/NP4nJyCm48Lt_ufJfrO85J4mC5JDrCaTGZPWCCarjPhQmNO6Df0gn52s5052g0iW992GA58P-4ED-nzmKdLeHx_twTwxSriRfamsJ8WUS94onOQWyJn34I95hLcCNi9Z0I4AWueuml2GfqmOg54Ure1fe9koT-HNihSf1_kT4r5VJfuMFv_sRhRRwYHIwqQ51bk3fU5I09KH9gk4hGWVNUqOJMNwsvw8KA5QULr2AEosm8D3O5d49OJzJ0oWher2DkGYRX2l1087B1ycTZg1ucDkdrz8KCgKEZqkcnwVmWuKloDxSs_VBi4-vlPwJ6WrtNTGAZKs-qn4pHuB4GPuaKhk2gtFIVoAx3hqJ0e49GshrdHapzqTDN7c6bbUpOhNFoZcUJ4T5_bxcVqzMtoDe7pVvb0_sEkbka7QRbttV_y)
+
+<details>
+<summary>PlantUML 소스</summary>
+
 ```plantuml
 @startuml
 skinparam sequenceMessageAlign center
@@ -147,6 +171,8 @@ R -> RN : bone rotation keyframes
 RN -> RN : 클립 블렌딩 + 보간 렌더 (60fps)
 @enduml
 ```
+
+</details>
 
 ### 3.3 모션 생성 전략
 

@@ -1,0 +1,52 @@
+// Grafana Alloy 기본 설정
+// logs/ 디렉토리의 로그 파일을 테일링해서 Loki로 전송한다.
+
+// 1. 로그 파일 탐색
+local.file_match "local_files" {
+  path_targets = [{__path__ = "/var/log/app/*.log"}]
+  sync_period = "5s"
+}
+
+// 2. 로그 파일 스크래핑
+loki.source.file "log_scrape" {
+  targets    = local.file_match.local_files.targets
+  forward_to = [loki.process.parse_json.receiver]
+  tail_from_end = true
+}
+
+// 3. JSON 파싱 + 주요 필드 Loki 레이블로 등록
+loki.process "parse_json" {
+  forward_to = [loki.write.grafana_loki.receiver]
+
+  // JSON 파싱
+  stage.json {
+    expressions = {
+      level           = "level",
+      logger          = "logger",
+      timestamp       = "timestamp",
+    }
+  }
+
+  // 추출한 값을 Loki 스트림 레이블로 등록.
+  stage.labels {
+    values = {
+      level          = "level",
+      logger         = "logger",
+    }
+  }
+
+  // 수집 시간 대신 로그 자체의 타임스탬프를 사용한다.
+  stage.timestamp {
+    source = "timestamp"
+    format = "RFC3339"
+  }
+
+}
+
+// Loki 엔드포인트 (컨테이너 내부에서는 Docker 서비스명으로 접근)
+// 내부 통신은 Loki 고정 포트 3100 사용
+loki.write "grafana_loki" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}
